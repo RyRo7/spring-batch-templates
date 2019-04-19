@@ -1,6 +1,5 @@
 package com.ryro.springbatch.input.databaseReader;
 
-import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -87,10 +86,10 @@ public class DatabaseReaderJobConfiguration {
                 .build();
     }
 
-    @Bean
-    public Job databaseItemWriteJob() {
-        return jobBuilderFactory.get("databaseItemWriteJob")
-                .start(databaseItemWriteStep())
-                .build();
-    }
+//    @Bean
+//    public Job databaseItemWriteJob() {
+//        return jobBuilderFactory.get("databaseItemWriteJob")
+//                .start(databaseItemWriteStep())
+//                .build();
+//    }
 }

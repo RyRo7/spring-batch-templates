@@ -1,19 +1,17 @@
-package com.ryro.springbatch.input.databaseReader;
-
-import java.util.Date;
+package com.ryro.springbatch.input.flatfilereader;
 
 /**
  * @Who: Ryan Roberts
  * @When: 2019-04-16 3:44 PM
  */
 
-public class Customer {
+public class FlatFileCustomer {
     private final long id;
     private final String firstName;
     private final String lastName;
-    private final Date birthdate;
+    private final String birthdate;
 
-    public Customer(long id, String firstName, String lastName, Date birthdate) {
+    public FlatFileCustomer(long id, String firstName, String lastName, String birthdate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
