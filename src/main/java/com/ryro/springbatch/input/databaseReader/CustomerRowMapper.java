@@ -1,5 +1,6 @@
 package com.ryro.springbatch.input.databaseReader;
 
+import com.ryro.springbatch.input.pojo.Customer;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

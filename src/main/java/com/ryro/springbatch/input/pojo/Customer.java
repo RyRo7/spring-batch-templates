@@ -1,4 +1,4 @@
-package com.ryro.springbatch.input.databaseReader;
+package com.ryro.springbatch.input.pojo;
 
 import java.util.Date;
 

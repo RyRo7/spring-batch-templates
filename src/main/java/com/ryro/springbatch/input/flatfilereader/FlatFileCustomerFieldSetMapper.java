@@ -1,6 +1,6 @@
 package com.ryro.springbatch.input.flatfilereader;
 
-import com.ryro.springbatch.input.databaseReader.Customer;
+import com.ryro.springbatch.input.pojo.Customer;
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.validation.BindException;

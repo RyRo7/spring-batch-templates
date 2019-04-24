@@ -1,5 +1,6 @@
 package com.ryro.springbatch.input.databaseReader;
 
+import com.ryro.springbatch.input.pojo.Customer;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;

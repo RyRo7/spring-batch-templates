@@ -1,7 +1,6 @@
 package com.ryro.springbatch.input.flatfilereader;
 
-import com.ryro.springbatch.input.databaseReader.Customer;
-import org.springframework.batch.core.Job;
+import com.ryro.springbatch.input.pojo.Customer;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -28,6 +27,7 @@ public class FlatFileReaderJobConfiguration {
     private StepBuilderFactory stepBuilderFactory;
 
 
+    @Bean
     public FlatFileItemReader<Customer> customerFlatFileItemReader() {
         FlatFileItemReader<Customer> reader = new FlatFileItemReader<>();
 
@@ -71,11 +71,11 @@ public class FlatFileReaderJobConfiguration {
                 .build();
     }
 
-    @Bean
-    public Job flatFileItemReaderJob() {
-        return jobBuilderFactory.get("flatFileItemReaderJob")
-                .start(flatFileItemWriteStep())
-                .build();
-    }
+//    @Bean
+//    public Job flatFileItemReaderJob() {
+//        return jobBuilderFactory.get("flatFileItemReaderJob")
+//                .start(flatFileItemWriteStep())
+//                .build();
+//    }
 
 }
