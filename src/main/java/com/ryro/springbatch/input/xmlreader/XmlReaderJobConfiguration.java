@@ -26,13 +26,13 @@ import java.util.Map;
 public class XmlReaderJobConfiguration {
 
     @Autowired
-    private JobBuilderFactory jobBuilderFactory;
+    public JobBuilderFactory jobBuilderFactory;
 
     @Autowired
-    private StepBuilderFactory stepBuilderFactory;
+    public StepBuilderFactory stepBuilderFactory;
 
     @Bean
-    public StaxEventItemReader<Customer> customerXmlItemReader() {
+    public StaxEventItemReader<Customer> customerItemReader() {
 
         XStreamMarshaller unmarshaller = new XStreamMarshaller();
 
@@ -43,7 +43,7 @@ public class XmlReaderJobConfiguration {
 
         StaxEventItemReader<Customer> reader = new StaxEventItemReader<>();
 
-        reader.setResource(new ClassPathResource("/data/customers.xml"));
+        reader.setResource(new ClassPathResource("/data/customer.xml"));
         reader.setFragmentRootElementName("customer");
         reader.setUnmarshaller(unmarshaller);
 
@@ -51,7 +51,7 @@ public class XmlReaderJobConfiguration {
     }
 
     @Bean
-    public ItemWriter<Customer> customerXmlItemWriter() {
+    public ItemWriter<Customer> customerItemWriter() {
         return items -> {
             for (Customer item : items) {
                 System.out.println(item.toString());
@@ -60,18 +60,18 @@ public class XmlReaderJobConfiguration {
     }
 
     @Bean
-    public Step xmlItemReaderStep() {
-        return stepBuilderFactory.get("xmlItemReaderStep")
+    public Step stepxml() {
+        return stepBuilderFactory.get("stepxml")
                 .<Customer, Customer>chunk(10)
-                .reader(customerXmlItemReader())
-                .writer(customerXmlItemWriter())
+                .reader(customerItemReader())
+                .writer(customerItemWriter())
                 .build();
     }
 
     @Bean
-    public Job xmlItemReaderJob() {
-        return jobBuilderFactory.get("xmlItemReaderJob")
-                .start(xmlItemReaderStep())
+    public Job job() {
+        return jobBuilderFactory.get("job")
+                .start(stepxml())
                 .build();
     }
 }
