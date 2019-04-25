@@ -2,7 +2,6 @@ package com.ryro.springbatch.input.xmlreader;
 
 
 import com.ryro.springbatch.input.pojo.Customer;
-import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -68,10 +67,10 @@ public class XmlReaderJobConfiguration {
                 .build();
     }
 
-    @Bean
-    public Job job() {
-        return jobBuilderFactory.get("job")
-                .start(stepxml())
-                .build();
-    }
+//    @Bean
+//    public Job jobxml() {
+//        return jobBuilderFactory.get("jobxml")
+//                .start(stepxml())
+//                .build();
+//    }
 }

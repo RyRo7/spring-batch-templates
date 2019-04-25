@@ -26,11 +26,13 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "DatabaseWriterCustomer{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthdate=" + birthdate +
                 '}';
     }
+
+
 }

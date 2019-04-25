@@ -36,8 +36,8 @@ public class DatabaseReaderJobConfiguration {
 
     //JdbcCursorItemReader is thread safe, compared to the JdbcPagingItemReader
 //    @Bean
-//    public JdbcCursorItemReader<Customer> cursorItemReader() {
-//        JdbcCursorItemReader<Customer> reader = new JdbcCursorItemReader<>();
+//    public JdbcCursorItemReader<DatabaseWriterCustomer> cursorItemReader() {
+//        JdbcCursorItemReader<DatabaseWriterCustomer> reader = new JdbcCursorItemReader<>();
 //
 //        reader.setSql("Select id, firstname, lastname, birthdate from customer order by lastname, firstname");
 //        reader.setDataSource(this.dataSource);
