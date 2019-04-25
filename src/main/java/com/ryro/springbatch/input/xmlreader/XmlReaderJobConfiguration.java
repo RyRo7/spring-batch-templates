@@ -1,5 +1,6 @@
 package com.ryro.springbatch.input.xmlreader;
 
+
 import com.ryro.springbatch.input.pojo.Customer;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -31,24 +32,17 @@ public class XmlReaderJobConfiguration {
     private StepBuilderFactory stepBuilderFactory;
 
     @Bean
-    public StaxEventItemReader<Customer> xmlCustomerItemReader() {
-
-        System.out.println("A");
+    public StaxEventItemReader<Customer> customerXmlItemReader() {
 
         XStreamMarshaller unmarshaller = new XStreamMarshaller();
-
-        System.out.println("B");
 
         Map<String, Class> aliases = new HashMap<>();
         aliases.put("customer", Customer.class);
 
         unmarshaller.setAliases(aliases);
 
-
-        System.out.println("C");
         StaxEventItemReader<Customer> reader = new StaxEventItemReader<>();
 
-        System.out.println("D");
         reader.setResource(new ClassPathResource("/data/customers.xml"));
         reader.setFragmentRootElementName("customer");
         reader.setUnmarshaller(unmarshaller);
@@ -57,7 +51,7 @@ public class XmlReaderJobConfiguration {
     }
 
     @Bean
-    public ItemWriter<Customer> xmlReaderItemWriter() {
+    public ItemWriter<Customer> customerXmlItemWriter() {
         return items -> {
             for (Customer item : items) {
                 System.out.println(item.toString());
@@ -69,8 +63,8 @@ public class XmlReaderJobConfiguration {
     public Step xmlItemReaderStep() {
         return stepBuilderFactory.get("xmlItemReaderStep")
                 .<Customer, Customer>chunk(10)
-                .reader(xmlCustomerItemReader())
-                .writer(xmlReaderItemWriter())
+                .reader(customerXmlItemReader())
+                .writer(customerXmlItemWriter())
                 .build();
     }
 
