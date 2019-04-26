@@ -13,23 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ryro.springbatch.output.itemwriter;
+package com.ryro.springbatch.output.common;
 
+import com.ryro.springbatch.output.pojo.Customer;
 import org.springframework.batch.item.ItemWriter;
-
-import java.util.List;
+import org.springframework.classify.Classifier;
 
 /**
  * @author Ryan Roberts
  */
-public class SysOutItemWriter implements ItemWriter<String> {
+public class CustomerClassifier implements Classifier<Customer, ItemWriter<? super Customer>> {
+
+	private ItemWriter<Customer> evenItemWriter;
+	private ItemWriter<Customer> oddItemWriter;
+
+	public CustomerClassifier(ItemWriter<Customer> evenItemWriter, ItemWriter<Customer> oddItemWriter) {
+		this.evenItemWriter = evenItemWriter;
+		this.oddItemWriter = oddItemWriter;
+	}
 
 	@Override
-	public void write(List<? extends String> items) throws Exception {
-		System.out.println("The size of this chunk was [" + items.size()+"]");
-
-		for (String item : items) {
-			System.out.println(">> " + item);
-		}
+	public ItemWriter<? super Customer> classify(Customer customer) {
+		return customer.getId() % 2 == 0 ? evenItemWriter : oddItemWriter;
 	}
 }

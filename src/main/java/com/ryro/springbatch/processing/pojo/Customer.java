@@ -13,17 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ryro.springbatch.input.pojo;
-
-import org.springframework.batch.item.ResourceAware;
-import org.springframework.core.io.Resource;
+package com.ryro.springbatch.processing.pojo;
 
 import java.util.Date;
 
 /**
- * @Who: Ryan Roberts
+ * @author Ryan Roberts
  */
-public class CustomerAware implements ResourceAware {
+public class Customer {
 
 	private final long id;
 
@@ -33,13 +30,27 @@ public class CustomerAware implements ResourceAware {
 
 	private final Date birthdate;
 
-	private Resource resource;
-
-	public CustomerAware(long id, String firstName, String lastName, Date birthdate) {
+	public Customer(long id, String firstName, String lastName, Date birthdate) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthdate = birthdate;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
 	}
 
 	@Override
@@ -49,12 +60,6 @@ public class CustomerAware implements ResourceAware {
 				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", birthdate=" + birthdate +
-				", from " + resource.getDescription() +
 				'}';
-	}
-
-	@Override
-	public void setResource(Resource resource) {
-		this.resource = resource;
 	}
 }

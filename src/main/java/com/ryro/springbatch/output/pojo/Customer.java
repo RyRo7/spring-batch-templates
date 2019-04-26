@@ -18,9 +18,9 @@ package com.ryro.springbatch.output.pojo;
 import java.util.Date;
 
 /**
- * @author Michael Minella
+ * @author Ryan Roberts
  */
-public class DatabaseWriterCustomer {
+public class Customer {
 
 	private final long id;
 
@@ -30,7 +30,7 @@ public class DatabaseWriterCustomer {
 
 	private final Date birthdate;
 
-	public DatabaseWriterCustomer(long id, String firstName, String lastName, Date birthdate) {
+	public Customer(long id, String firstName, String lastName, Date birthdate) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;

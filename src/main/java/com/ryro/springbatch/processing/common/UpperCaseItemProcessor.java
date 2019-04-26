@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 the original author or authors.
+ * Copyright 2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,23 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ryro.springbatch.input.databaseReader;
+package com.ryro.springbatch.processing.common;
 
-import com.ryro.springbatch.input.pojo.Customer;
-import org.springframework.jdbc.core.RowMapper;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import com.ryro.springbatch.processing.pojo.Customer;
+import org.springframework.batch.item.ItemProcessor;
 
 /**
  * @author Ryan Roberts
  */
-public class CustomerRowMapper implements RowMapper<Customer> {
+public class UpperCaseItemProcessor implements ItemProcessor<Customer, Customer> {
+
 	@Override
-	public Customer mapRow(ResultSet resultSet, int i) throws SQLException {
-		return new Customer(resultSet.getLong("id"),
-				resultSet.getString("firstName"),
-				resultSet.getString("lastName"),
-				resultSet.getDate("birthdate"));
+	public Customer process(Customer item) throws Exception {
+		return new Customer(item.getId(),
+				item.getFirstName().toUpperCase(),
+				item.getLastName().toUpperCase(),
+				item.getBirthdate());
 	}
 }

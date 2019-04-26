@@ -41,7 +41,7 @@ public class DatabaseReaderJobConfiguration {
 //
 //        reader.setSql("Select id, firstname, lastname, birthdate from customer order by lastname, firstname");
 //        reader.setDataSource(this.dataSource);
-//        reader.setRowMapper(new CustomerRowMapper());
+//        reader.setRowMapper(new FlatFileWriterCustomerRowMapper());
 //
 //        return reader;
 //    }

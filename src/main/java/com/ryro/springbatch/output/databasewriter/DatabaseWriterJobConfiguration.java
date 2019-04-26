@@ -15,8 +15,8 @@
  */
 package com.ryro.springbatch.output.databasewriter;
 
-import com.ryro.springbatch.output.pojo.DatabaseWriterCustomer;
-import org.springframework.batch.core.Job;
+import com.ryro.springbatch.output.common.CustomerFieldSetMapper;
+import com.ryro.springbatch.output.pojo.Customer;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -49,24 +49,23 @@ public class DatabaseWriterJobConfiguration {
 	public DataSource dataSource;
 
 	@Bean
-	public FlatFileItemReader<DatabaseWriterCustomer> customerDBWriterItemReader() {
-		FlatFileItemReader<DatabaseWriterCustomer> reader = new FlatFileItemReader<>();
+	public FlatFileItemReader<Customer> customerDBWriterItemReader() {
+		FlatFileItemReader<Customer> reader = new FlatFileItemReader<>();
 
 		String filepath = "/data/dbwritercustomer.csv";
 
-
-		System.out.println("*** >"+filepath);
+//		System.out.println("*** >"+filepath);
 		reader.setLinesToSkip(1);
 		reader.setResource(new ClassPathResource(filepath));
 
 
-		DefaultLineMapper<DatabaseWriterCustomer> customerLineMapper = new DefaultLineMapper<>();
+		DefaultLineMapper<Customer> customerLineMapper = new DefaultLineMapper<>();
 
 		DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
 		tokenizer.setNames(new String[] {"id", "firstName", "lastName", "birthdate"});
 
 		customerLineMapper.setLineTokenizer(tokenizer);
-		customerLineMapper.setFieldSetMapper(new DatabaseWriterCustomerFieldSetMapper());
+		customerLineMapper.setFieldSetMapper(new CustomerFieldSetMapper());
 		customerLineMapper.afterPropertiesSet();
 
 		reader.setLineMapper(customerLineMapper);
@@ -75,8 +74,8 @@ public class DatabaseWriterJobConfiguration {
 	}
 
 	@Bean
-	public JdbcBatchItemWriter<DatabaseWriterCustomer> customerDBWriterItemWriter() {
-		JdbcBatchItemWriter<DatabaseWriterCustomer> itemWriter = new JdbcBatchItemWriter<>();
+	public JdbcBatchItemWriter<Customer> customerDBWriterItemWriter() {
+		JdbcBatchItemWriter<Customer> itemWriter = new JdbcBatchItemWriter<>();
 
 		itemWriter.setDataSource(this.dataSource);
 		itemWriter.setSql("INSERT INTO CUSTOMER VALUES (:id, :firstName, :lastName, :birthdate)");
@@ -89,16 +88,16 @@ public class DatabaseWriterJobConfiguration {
 	@Bean
 	public Step stepDatabaseWriterWriter() {
 		return stepBuilderFactory.get("stepDatabaseWriterWriter")
-				.<DatabaseWriterCustomer, DatabaseWriterCustomer>chunk(10)
+				.<Customer, Customer>chunk(10)
 				.reader(customerDBWriterItemReader())
 				.writer(customerDBWriterItemWriter())
 				.build();
 	}
 
-	@Bean
-	public Job jobDatabaseWriter() {
-		return jobBuilderFactory.get("jobDatabaseWriter")
-				.start(stepDatabaseWriterWriter())
-				.build();
-	}
+//	@Bean
+//	public Job jobDatabaseWriter() {
+//		return jobBuilderFactory.get("jobDatabaseWriter")
+//				.start(stepDatabaseWriterWriter())
+//				.build();
+//	}
 }

@@ -21,7 +21,7 @@ import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.validation.BindException;
 
 /**
- * @author Michael Minella
+ * @Who: Ryan Roberts
  */
 public class CustomerFieldSetMapper implements FieldSetMapper<CustomerAware> {
 

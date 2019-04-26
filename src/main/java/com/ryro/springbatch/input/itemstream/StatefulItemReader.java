@@ -22,7 +22,7 @@ import org.springframework.batch.item.ItemStreamReader;
 import java.util.List;
 
 /**
- * @author Michael Minella
+ * @Who: Ryan Roberts
  */
 public class StatefulItemReader implements ItemStreamReader<String> {
 

@@ -13,21 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ryro.springbatch.output.databasewriter;
+package com.ryro.springbatch.output.common;
 
-import com.ryro.springbatch.output.pojo.DatabaseWriterCustomer;
+import com.ryro.springbatch.output.pojo.Customer;
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.validation.BindException;
 
 /**
- * @author Michael Minella
+ * @author Ryan Roberts
  */
-public class DatabaseWriterCustomerFieldSetMapper implements FieldSetMapper<DatabaseWriterCustomer> {
+public class CustomerFieldSetMapper implements FieldSetMapper<Customer> {
 
 	@Override
-	public DatabaseWriterCustomer mapFieldSet(FieldSet fieldSet) throws BindException {
-		return new DatabaseWriterCustomer(fieldSet.readLong("id"),
+	public Customer mapFieldSet(FieldSet fieldSet) throws BindException {
+		return new Customer(fieldSet.readLong("id"),
 				fieldSet.readString("firstName"),
 				fieldSet.readString("lastName"),
 				fieldSet.readDate("birthdate", "yyyy-MM-dd HH:mm:ss"));

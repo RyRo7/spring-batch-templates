@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ryro.springbatch.input.databaseReader;
+package com.ryro.springbatch.processing.common;
 
-import com.ryro.springbatch.input.pojo.Customer;
+import com.ryro.springbatch.processing.pojo.Customer;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

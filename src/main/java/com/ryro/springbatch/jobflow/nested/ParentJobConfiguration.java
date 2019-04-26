@@ -1,6 +1,5 @@
 package com.ryro.springbatch.jobflow.nested;
 
-import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -23,8 +22,8 @@ public class ParentJobConfiguration {
     @Autowired
     public StepBuilderFactory stepBuilderFactory;
 
-    @Autowired
-    private Job childJob;
+//    @Autowired
+//    private Job childJob;
 
     @Autowired
     public JobLauncher jobLauncher;
