@@ -13,4 +13,10 @@ delete from batch_job_execution;
 delete from batch_job_instance;
 
 
+delete from customer;
+delete from new_customer;
 select * from customer;
+select count(*) from customer;
+select * from new_customer;
+select count(*) from new_customer;
+

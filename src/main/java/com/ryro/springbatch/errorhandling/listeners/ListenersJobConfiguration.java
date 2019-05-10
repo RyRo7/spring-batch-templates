@@ -17,7 +17,6 @@ package com.ryro.springbatch.errorhandling.listeners;
 
 import com.ryro.springbatch.errorhandling.common.CustomException;
 import com.ryro.springbatch.errorhandling.common.CustomSkipListener;
-import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -81,12 +80,12 @@ public class ListenersJobConfiguration {
 				.build();
 	}
 
-	@Bean
-	public Job jobListener() {
-		return jobBuilderFactory.get("jobListener")
-				.start(stepListener())
-				.build();
-	}
+//	@Bean
+//	public Job jobListener() {
+//		return jobBuilderFactory.get("jobListener")
+//				.start(stepListener())
+//				.build();
+//	}
 }
 
 /**

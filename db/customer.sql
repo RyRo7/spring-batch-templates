@@ -20,3 +20,10 @@ insert into CUSTOMER (FIRSTNAME, LASTNAME, BIRTHDATE) VALUES ('Ma', 'Motsinger',
 insert into CUSTOMER (FIRSTNAME, LASTNAME, BIRTHDATE) VALUES ('Rachael', 'Rachal', '2001-01-01');
 insert into CUSTOMER (FIRSTNAME, LASTNAME, BIRTHDATE) VALUES ('Zimmerman', 'Zachary', '2001-02-02');
 insert into CUSTOMER (FIRSTNAME, LASTNAME, BIRTHDATE) VALUES ('Zimmerman', 'Aaron', '2001-03-03');
+
+CREATE TABLE NEW_CUSTOMER (
+                          ID SERIAL,
+                          FIRSTNAME VARCHAR(255) NOT NULL,
+                          LASTNAME VARCHAR(255) NOT NULL,
+                          BIRTHDATE VARCHAR(255)
+);
