@@ -84,7 +84,7 @@ public class MultiThreadStepJobConfiguration {
 
     @Bean
     public Job jobMultipleThreadStep() throws Exception {
-        return jobBuilderFactory.get("jobMultipleThreadStep2")
+        return jobBuilderFactory.get("jobMultipleThreadStep")
                 .start(stepMultipleThreadStep())
                 .build();
     }
@@ -94,53 +94,53 @@ public class MultiThreadStepJobConfiguration {
 
 /**
  *
- * insert a few thousand records into customer DB - 100000 records should be enough
+ * insert a few thousand records into customer DB - 50000 records should be enough
  * comment out line 80
  *                .taskExecutor(new SimpleAsyncTaskExecutor()
  *
  * run application
  *
- * 2019-05-10 15:16:23.366  INFO 26052 --- [           main] com.ryro.springbatch.Application         : Starting Application on ryro-HP-ZBook-15-G3 with PID 26052 (/home/ryro/ws/spring-batch-templates/out/production/classes started by ryro in /home/ryro/ws/spring-batch-templates)
- * 2019-05-10 15:16:23.369  INFO 26052 --- [           main] com.ryro.springbatch.Application         : No active profile set, falling back to default profiles: default
- * 2019-05-10 15:16:24.132  INFO 26052 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
- * 2019-05-10 15:16:24.180  INFO 26052 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
- * 2019-05-10 15:16:24.560  INFO 26052 --- [           main] o.s.b.c.r.s.JobRepositoryFactoryBean     : No database type set, using meta data indicating: POSTGRES
- * 2019-05-10 15:16:24.635  INFO 26052 --- [           main] o.s.b.c.l.support.SimpleJobLauncher      : No TaskExecutor has been set, defaulting to synchronous executor.
- * 2019-05-10 15:16:24.735  INFO 26052 --- [           main] com.ryro.springbatch.Application         : Started Application in 1.619 seconds (JVM running for 2.006)
- * 2019-05-10 15:16:24.736  INFO 26052 --- [           main] o.s.b.a.b.JobLauncherCommandLineRunner   : Running default command line with: []
- * 2019-05-10 15:16:24.788  INFO 26052 --- [           main] o.s.b.c.l.support.SimpleJobLauncher      : Job: [SimpleJob: [name=jobMultipleThreadStep1]] launched with the following parameters: [{}]
- * 2019-05-10 15:16:24.807  INFO 26052 --- [           main] o.s.batch.core.job.SimpleStepHandler     : Executing step: [stepMultipleThreadStep]
+ * 2019-05-13 11:09:19.408  INFO 28655 --- [           main] com.ryro.springbatch.Application         : Starting Application on ryro-HP-ZBook-15-G3 with PID 28655 (/home/ryro/ws/spring-batch-templates/out/production/classes started by ryro in /home/ryro/ws/spring-batch-templates)
+ * 2019-05-13 11:09:19.411  INFO 28655 --- [           main] com.ryro.springbatch.Application         : No active profile set, falling back to default profiles: default
+ * 2019-05-13 11:09:20.443  INFO 28655 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+ * 2019-05-13 11:09:20.510  INFO 28655 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+ * 2019-05-13 11:09:20.924  INFO 28655 --- [           main] o.s.b.c.r.s.JobRepositoryFactoryBean     : No database type set, using meta data indicating: POSTGRES
+ * 2019-05-13 11:09:20.989  INFO 28655 --- [           main] o.s.b.c.l.support.SimpleJobLauncher      : No TaskExecutor has been set, defaulting to synchronous executor.
+ * 2019-05-13 11:09:21.086  INFO 28655 --- [           main] com.ryro.springbatch.Application         : Started Application in 2.029 seconds (JVM running for 2.494)
+ * 2019-05-13 11:09:21.087  INFO 28655 --- [           main] o.s.b.a.b.JobLauncherCommandLineRunner   : Running default command line with: []
+ * 2019-05-13 11:09:21.130  INFO 28655 --- [           main] o.s.b.c.l.support.SimpleJobLauncher      : Job: [SimpleJob: [name=jobMultipleThreadStep2]] launched with the following parameters: [{}]
+ * 2019-05-13 11:09:21.150  INFO 28655 --- [           main] o.s.batch.core.job.SimpleStepHandler     : Executing step: [stepMultipleThreadStep]
+ * 2019-05-13 11:09:56.015  INFO 28655 --- [           main] o.s.b.c.l.support.SimpleJobLauncher      : Job: [SimpleJob: [name=jobMultipleThreadStep2]] completed with the following parameters: [{}] and the following status: [COMPLETED]
+ * 2019-05-13 11:09:56.018  INFO 28655 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+ * 2019-05-13 11:09:56.019  INFO 28655 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
  *
- * while it ir running you can check the read_count value in step execution table
+ * while it is running you can check the read_count value in step execution table
  * select * from BATCH_STEP_EXECUTION order by step_execution_id;
  *
- * 2019-05-10 15:18:37.872  INFO 26052 --- [           main] o.s.b.c.l.support.SimpleJobLauncher      : Job: [SimpleJob: [name=jobMultipleThreadStep1]] completed with the following parameters: [{}] and the following status: [COMPLETED]
- * 2019-05-10 15:18:37.879  INFO 26052 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
- * 2019-05-10 15:18:37.882  INFO 26052 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed
- *
- * Job took 00:02:13 to run
+ * Job took 00:00:35 to run
  *
  * then
  *
  * uncomment line 80
+ *  .taskExecutor(new SimpleAsyncTaskExecutor())
  * delete from new_customer;
  * change the job name
  *
  * run again
  *
- * 2019-05-10 15:21:40.186  INFO 28048 --- [           main] com.ryro.springbatch.Application         : Starting Application on ryro-HP-ZBook-15-G3 with PID 28048 (/home/ryro/ws/spring-batch-templates/out/production/classes started by ryro in /home/ryro/ws/spring-batch-templates)
- * 2019-05-10 15:21:40.188  INFO 28048 --- [           main] com.ryro.springbatch.Application         : No active profile set, falling back to default profiles: default
- * 2019-05-10 15:21:40.953  INFO 28048 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
- * 2019-05-10 15:21:41.001  INFO 28048 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
- * 2019-05-10 15:21:41.304  INFO 28048 --- [           main] o.s.b.c.r.s.JobRepositoryFactoryBean     : No database type set, using meta data indicating: POSTGRES
- * 2019-05-10 15:21:41.362  INFO 28048 --- [           main] o.s.b.c.l.support.SimpleJobLauncher      : No TaskExecutor has been set, defaulting to synchronous executor.
- * 2019-05-10 15:21:41.460  INFO 28048 --- [           main] com.ryro.springbatch.Application         : Started Application in 1.533 seconds (JVM running for 1.918)
- * 2019-05-10 15:21:41.461  INFO 28048 --- [           main] o.s.b.a.b.JobLauncherCommandLineRunner   : Running default command line with: []
- * 2019-05-10 15:21:41.501  INFO 28048 --- [           main] o.s.b.c.l.support.SimpleJobLauncher      : Job: [SimpleJob: [name=jobMultipleThreadStep2]] launched with the following parameters: [{}]
- * 2019-05-10 15:21:41.521  INFO 28048 --- [           main] o.s.batch.core.job.SimpleStepHandler     : Executing step: [stepMultipleThreadStep]
- * 2019-05-10 15:23:52.909  INFO 28048 --- [           main] o.s.b.c.l.support.SimpleJobLauncher      : Job: [SimpleJob: [name=jobMultipleThreadStep2]] completed with the following parameters: [{}] and the following status: [COMPLETED]
- * 2019-05-10 15:23:52.912  INFO 28048 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
- * 2019-05-10 15:23:52.914  INFO 28048 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+ * 2019-05-13 11:13:21.897  INFO 30585 --- [           main] com.ryro.springbatch.Application         : Starting Application on ryro-HP-ZBook-15-G3 with PID 30585 (/home/ryro/ws/spring-batch-templates/out/production/classes started by ryro in /home/ryro/ws/spring-batch-templates)
+ * 2019-05-13 11:13:21.900  INFO 30585 --- [           main] com.ryro.springbatch.Application         : No active profile set, falling back to default profiles: default
+ * 2019-05-13 11:13:22.652  INFO 30585 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+ * 2019-05-13 11:13:22.698  INFO 30585 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+ * 2019-05-13 11:13:22.997  INFO 30585 --- [           main] o.s.b.c.r.s.JobRepositoryFactoryBean     : No database type set, using meta data indicating: POSTGRES
+ * 2019-05-13 11:13:23.056  INFO 30585 --- [           main] o.s.b.c.l.support.SimpleJobLauncher      : No TaskExecutor has been set, defaulting to synchronous executor.
+ * 2019-05-13 11:13:23.154  INFO 30585 --- [           main] com.ryro.springbatch.Application         : Started Application in 1.527 seconds (JVM running for 1.94)
+ * 2019-05-13 11:13:23.155  INFO 30585 --- [           main] o.s.b.a.b.JobLauncherCommandLineRunner   : Running default command line with: []
+ * 2019-05-13 11:13:23.193  INFO 30585 --- [           main] o.s.b.c.l.support.SimpleJobLauncher      : Job: [SimpleJob: [name=jobMultipleThreadStep]] launched with the following parameters: [{}]
+ * 2019-05-13 11:13:23.213  INFO 30585 --- [           main] o.s.batch.core.job.SimpleStepHandler     : Executing step: [stepMultipleThreadStep]
+ * 2019-05-13 11:13:54.820  INFO 30585 --- [           main] o.s.b.c.l.support.SimpleJobLauncher      : Job: [SimpleJob: [name=jobMultipleThreadStep]] completed with the following parameters: [{}] and the following status: [COMPLETED]
+ * 2019-05-13 11:13:54.825  INFO 30585 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+ * 2019-05-13 11:13:54.828  INFO 30585 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
  *
- * Job took 00:02:11 to run
+ * Job took 00:00:31 to run
  **/

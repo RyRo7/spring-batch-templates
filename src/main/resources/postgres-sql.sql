@@ -15,6 +15,7 @@ delete from batch_job_instance;
 
 delete from customer;
 delete from new_customer;
+delete from customer where id > 50000;
 select * from customer;
 select count(*) from customer;
 select * from new_customer;
